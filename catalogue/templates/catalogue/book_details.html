@@ -1,0 +1,105 @@
+{% extends 'catalogue/base_catalogue.html' %}
+
+{% block title %}
+  {{ book.title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="detail-content">
+
+    <div class="details-card1">
+      <div>
+        <img class="image" src="{{ book.book_cover.url }}">
+      </div>
+
+      <div class="dropdown">
+        <button onclick="myFunction(this)" class="dropbtn">About book</button>
+        <div id="myDropdown1" class="dropdown-content">
+          <p>{{ book.description }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="details-card2">
+      <div>
+        <img class="image" src="{{ book.theme_photo.url }}">
+      </div>
+
+      <div class="dropdown">
+        <button onclick="myFunction(this)" class="dropbtn">Thematica</button>
+        <div id="myDropdown2" class="dropdown-content">
+          <p>{{ book.theme_info }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="details-card3">
+      <div>
+        <img class="image" src="{{ book.artist.url }}">
+      </div>
+
+      <div class="dropdown">
+        <button onclick="myFunction(this)" class="dropbtn">Artist</button>
+        <div id="myDropdown3" class="dropdown-content">
+          <p>{{ book.artist_info }}</p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="main-photo">
+      <button class="accordion">Detailed photo</button>
+      <div class="panel">
+        <img src="{{ book.first_page.url }}">
+        <div class="main-description">
+          <h1>{{ book.title }}</h1>
+          <p>{{ book.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+    function myFunction(a) {
+      a.parentNode.getElementsByClassName("dropdown-content")[0].classList.toggle("show");
+    }
+
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+          panel.style.display = "none";
+        } else {
+          panel.style.display = "block";
+        }
+      });
+    }
+    </script>
+
+
+{% endblock %}

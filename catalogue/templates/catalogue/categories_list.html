@@ -1,0 +1,15 @@
+{% extends 'catalogue/base_catalogue.html' %}
+
+{% block title %}
+  Categories - {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+  <h1 class="mb-5">Categories:</h1>
+
+  {% for cat in categories %}
+    <h3><a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a></h3>
+  {% endfor %}
+
+{% endblock %}

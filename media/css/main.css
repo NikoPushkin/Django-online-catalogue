@@ -1,0 +1,19 @@
+body {
+  padding: 1;
+  margin: 1;
+  background: #f2f6e9
+}
+
+.navbar {
+  background: #6ab446;
+}
+
+.nav-link,
+.navbar-brand {
+  color: #fff;
+  cursor: progress;
+}
+
+.card-body {
+  margin-right: 1em;
+}

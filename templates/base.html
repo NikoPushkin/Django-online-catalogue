@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/main1.css' %}">
+      <script src="{% static 'js/main.js' %}"></script>
+      <title>
+        {% block title %}
+          Visitcard
+        {% endblock %}
+      </title>
+  </head>
+  <body>
+
+    <div class="main-container">
+
+      <div class="navbar">
+        <a class="active" href="{% url "books_list_url" %}">Home</a>
+        <a href="#">Main</a>
+        <a href="#">Store</a>
+        <a href="{% url "categories_list_url" %}">Categories</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <!-- <div class="content-container"> -->
+      {% block content %}
+        There is no any content
+      {% endblock %}
+      <!-- </div> -->
+
+    </div>
+
+
+  </body>
+</html>
