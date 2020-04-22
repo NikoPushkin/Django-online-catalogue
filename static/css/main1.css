@@ -190,11 +190,19 @@ img {vertical-align: middle;}
 
 /* DETAIL PAGE */
 
-.details-card1 { grid-area: details-card1;}
-.details-card2 { grid-area: details-card2;}
-.details-card3 { grid-area: details-card3;}
+.details-card1 { grid-area: details-card1;
+  position: relative;
+ }
+.details-card2 { grid-area: details-card2;
+  position: relative;
+}
+.details-card3 { grid-area: details-card3;
+  position: relative;
+}
 
-.main-photo { grid-area: main-photo;}
+.main-photo { grid-area: main-photo;
+  position: relative;
+}
 
 .detail-content {
   margin-right: 200px;
@@ -218,7 +226,59 @@ img {vertical-align: middle;}
   min-width: 430px;
   max-width: 430px;
   min-height: 580px;
-  max-height: 5080px;
+  max-height: 580px;
+}
+
+.overlay-image {
+  display: block;
+  min-width: 430px;
+  max-width: 430px;
+  min-height: 580px;
+  max-height: 580px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-width: 430px;
+  max-width: 430px;
+  min-height: 580px;
+  max-height: 580px;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.details-card1:hover .overlay {
+  opacity: 0.8;
+  background-color: rgb(0,0,0,1); /* Fallback color */
+  background-color: rgba(0,0,0,1)
+}
+
+.details-card2:hover .overlay {
+  opacity: 0.8;
+  background-color: rgb(0,0,0,1); /* Fallback color */
+  background-color: rgba(0,0,0,1)
+}
+
+.details-card3:hover .overlay {
+  opacity: 0.8;
+  background-color: rgb(0,0,0,1); /* Fallback color */
+  background-color: rgba(0,0,0,1)
+}
+
+.overlay-image:hover .overlay-text {
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+}
+
+.overlay-text {
+  color: white;
+  font-size: 28px;
+  padding: 10px;
+  text-align: center;
 }
 
 .main-photo img {
