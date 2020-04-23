@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 
+from .utils import DetailObjectMixin
 from .models import Book, Category
 from .forms import CategoryForm
 
@@ -9,13 +10,13 @@ def books_list(request):
     books = Book.objects.all()
     return render(request, 'catalogue/index.html', context={'books': books})
 
-def book_details(request, slug):
-    book = Book.objects.get(slug__iexact=slug)
-    return render(request, "catalogue/book_details.html", context={'book': book})
+class BookDetails(DetailObjectMixin, View):
+    model = Book
+    template = "catalogue/book_details.html"
 
-def book_category(request, slug):
-    category = Category.objects.get(slug__iexact=slug)
-    return render(request, "catalogue/book_category.html", context={'category': category})
+class BookCategory(DetailObjectMixin, View):
+    model = Category
+    template = "catalogue/book_category.html"
 
 class CategoryCreate(View):
     def get(self, request):
