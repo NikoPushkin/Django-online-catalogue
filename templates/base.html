@@ -19,16 +19,24 @@
       <div class="navbar">
         <a class="active" href="{% url "books_list_url" %}">Home</a>
         <a href="#">Main</a>
-        <a href="{% url "categories_list_url" %}">Store</a>
+        <div class="store-button">
+          <button class="dropbtn-menu" onclick="window.location.href = '{% url "categories_list_url" %}'">
+            Store
+          </button>
+          <div class="dropdown-menu">
+            {% for cat in categories %}
+              <a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>
+            {% endfor %}
+          </div>
+        </div>
         <a href="#">Categories</a>
         <a href="#">Contact</a>
       </div>
 
-      <!-- <div class="content-container"> -->
+
       {% block content %}
         There is no any content
       {% endblock %}
-      <!-- </div> -->
 
     </div>
 
