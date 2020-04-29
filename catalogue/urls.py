@@ -4,8 +4,11 @@ from .views import *
 
 urlpatterns = [
     path('', books_list, name="books_list_url"),
+    path('details/create', BookCreater.as_view(), name='create_book_url'),
     path('details/<str:slug>/', BookDetails.as_view(), name="book_details_url"),
     path('categories/', categories_list, name="categories_list_url"),
     path('category/create', CategoryCreate.as_view(), name="category_create_url"),
     path('category/<str:slug>/', BookCategory.as_view(), name="category_book_url"),
+    path('category/delete/<str:slug>', CategoryDelete.as_view(), name="delete_cat_url"),
+    path('creater/', creater_page, name='creater_url')
 ]
