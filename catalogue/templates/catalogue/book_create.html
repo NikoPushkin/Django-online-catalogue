@@ -1,0 +1,28 @@
+{% extends 'catalogue/base_catalogue.html' %}
+
+{% block title %}
+    Book-creat
+{% endblock %}
+
+
+{% block content %}
+
+      <form action="{% url 'create_book_url' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+
+          {% for field in form %}
+
+            {% if field.errors %}
+              <script>
+                alert('{{ field.errors }}')
+              </script>
+            {% endif %}
+
+                {{ field.label }}
+                {{ field }}
+
+          {% endfor %}
+        <button type="submit">Create book</button>
+      </form>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'catalogue/base_catalogue.html' %}
+
+{% block title %}
+    Creater
+{% endblock %}
+
+{% block content %}
+
+  <div class="">
+    <a href="{% url "create_book_url" %}">Create book</a>
+  </div>
+
+  <div class="">
+    <a href="{% url "category_create_url" %}">Create category</a>
+  </div>
+
+{% endblock %}
