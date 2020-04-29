@@ -1,0 +1,23 @@
+{% extends 'catalogue/base_catalogue.html' %}
+
+{% block title %}
+    Update - {{ category.title|title }}
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'category_update_url' slug=category.slug %}" method="post">
+      {% csrf_token %}
+        {% for field in form %}
+          {% if field.errors %}
+            <script>
+              alert('{{ field.errors }}')
+            </script>
+          {% endif %}
+
+          {{ field }}
+          {{ field.label }}
+
+        {% endfor %}
+        <button type="submit">Update category</button>
+    </form>
+{% endblock %}

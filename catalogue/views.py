@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 
-from .utils import DetailObjectMixin, CreateObjectMixin
+from .utils import DetailObjectMixin, CreateObjectMixin, UpdateObjectMixin
 from .models import Book, Category
 from .forms import CategoryForm, BookForm
 
@@ -21,6 +21,11 @@ class BookCategory(DetailObjectMixin, View):
     template = "catalogue/book_category.html"
 
 
+class BookCreater(CreateObjectMixin, View):
+    form = BookForm
+    template = 'catalogue/book_create.html'
+
+
 class CategoryCreate(CreateObjectMixin, View):
     form = CategoryForm
     template = 'catalogue/category_create.html'
@@ -33,17 +38,24 @@ class CategoryDelete(View):
         return redirect('/catalogue/categories/')
 
 
-class BookCreater(CreateObjectMixin, View):
-    form = BookForm
-    template = 'catalogue/book_create.html'
-
-
 def categories_list(request):
     categories = Category.objects.all()
     return render(
-        request, 'catalogue/categories_list.html',
-        context={"categories": categories}
-        )
+    request, 'catalogue/categories_list.html',
+    context={"categories": categories}
+    )
+
+
+class CategoryUpdate(UpdateObjectMixin, View):
+    model = Category
+    form = CategoryForm
+    template = 'catalogue/cat_update.html'
+
+
+class BookUpdate(UpdateObjectMixin, View):
+    model = Book
+    form = BookForm
+    template = 'catalogue/book_update.html'
 
 def creater_page(request):
     return render(request, 'catalogue/creater_page.html')
