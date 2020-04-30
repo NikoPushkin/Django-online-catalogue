@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 
-from .utils import DetailObjectMixin, CreateObjectMixin, UpdateObjectMixin
+from .utils import DetailObjectMixin, CreateObjectMixin, UpdateObjectMixin, DeleteObjectMixin
 from .models import Book, Category
 from .forms import CategoryForm, BookForm
 
@@ -31,12 +31,13 @@ class CategoryCreate(CreateObjectMixin, View):
     template = 'catalogue/category_create.html'
 
 
-class CategoryDelete(View):
-    def post(self, request, slug):
-        cat_for_del = get_object_or_404(Category, slug__iexact=slug)
-        cat_for_del.delete()
-        return redirect('/catalogue/categories/')
+class CategoryDelete(DeleteObjectMixin, View):
+    model = Category
+    url = 'categories_list_url'
 
+class BookDelete(DeleteObjectMixin, View):
+    model = Book
+    url = 'books_list_url'
 
 def categories_list(request):
     categories = Category.objects.all()

@@ -1,5 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect
-
+from django.shortcuts import get_object_or_404, render, redirect, reverse
 from .models import *
 
 class DetailObjectMixin:
@@ -54,3 +53,20 @@ class UpdateObjectMixin:
             request, self.template,
             context={self.model.__name__.lower(): object, 'form': bound_form}
             )
+
+class DeleteObjectMixin:
+    model = None
+    # template = None
+    url = None
+
+    # def get(self, request, slug):
+    #     obj = model.objects.get(slug__iexact=slug)
+    #     return render(
+    #         request, self.template,
+    #         context={self.model.__name__.lower(): obj}
+    #         )
+
+    def post(self, request, slug):
+        obj = self.model.objects.get(slug__iexact=slug)
+        obj.delete()
+        return redirect(reverse(self.url))
