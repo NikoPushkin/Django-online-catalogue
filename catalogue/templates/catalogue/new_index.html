@@ -1,0 +1,17 @@
+{% extends 'catalogue/base_catalogue.html' %}
+
+{% block title %}
+  Best store
+{% endblock %}
+
+{% block content %}
+  <div class="catalogue-container">
+
+      {% for book in books %}
+
+          {% include 'catalogue/includes/book_card_template.html' %}
+
+      {% endfor %}
+
+  </div>
+{% endblock %}

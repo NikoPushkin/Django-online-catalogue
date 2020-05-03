@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="{% static 'css/new_css.css' %}">
+      <script src="{% static 'js/main.js' %}"></script>
+      <title>
+        {% block title %}
+          Visitcard
+        {% endblock %}
+      </title>
+  </head>
+  <body>
+
+    <div class="base-grid-container">
+      <div class="navbar-container">
+        <div class="Home-button"><a href="">Home</a></div>
+        <div class="Store-button">
+          <button class="dropbtn-menu" onclick="window.location.href = '{% url "books_list_url" %}'">
+            Store
+          </button>
+          <div class="dropdown-menu">
+            {% for cat in categories %}
+              <a class="dropdown-title" href="{{ cat.get_absolute_url }}">{{ cat.title | title }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="Sl-button"><a href="">Shopping list</a></div>
+        <div class="Search-field"><a href="">Search</a></div>
+        <div class="Contact-button"><a href="">Contact</a></div>
+      </div>
+
+      <div class="content-container">
+
+        {% block content %}
+          There is no any content
+        {% endblock %}
+
+      </div>
+
+      <div class="footer">
+        <h3>Some shit about your fucking project and other information</h3>
+      </div>
+
+    </div>
+
+  </body>
+</html>
