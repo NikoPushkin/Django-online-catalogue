@@ -8,7 +8,8 @@ from .forms import CategoryForm, BookForm
 
 def books_list(request):
     books = Book.objects.all()
-    return render(request, 'catalogue/index.html', context={'books': books})
+    categories = Category.objects.all()
+    return render(request, 'catalogue/new_index.html', context={'books': books, 'categories': categories})
 
 
 class BookDetails(DetailObjectMixin, View):

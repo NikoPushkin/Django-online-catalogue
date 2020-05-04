@@ -4,9 +4,38 @@
   {{ category.title }} - {{ block.super }}
 {% endblock %}
 
+
+
+
 {% block content %}
-  <h1 style="text-align: center">"{{ category.title|title}}" category stores the following stuff</h1>
-  {% for book in category.books.all %}
-    {% include 'catalogue/includes/book_card_template.html' %}
-  {% endfor %}
+<div class="category_label">
+  <h1 style="text-align: center">"{{ category.title|title}}" category stores the following stuff:</h1>
+</div>
+<div class="books_by_cat">
+
+    {% for book in category.books.all %}
+      {% include 'catalogue/includes/book_card_template.html' %}
+    {% endfor %}
+
+</div>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form action="{% url 'book_delete_url' slug=book.slug %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Delete</button>
+</form> -->

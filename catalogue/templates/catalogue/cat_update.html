@@ -13,9 +13,13 @@
               alert('{{ field.errors }}')
             </script>
           {% endif %}
-
-          {{ field }}
-          {{ field.label }}
+          <div class="">
+            {{ field }}
+          </div>
+          
+          <div class="">
+            {{ field.label }}
+          </div>
 
         {% endfor %}
         <button type="submit">Update category</button>
