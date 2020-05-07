@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
+from django.core.paginator import Paginator
 
 from .utils import DetailObjectMixin, CreateObjectMixin, UpdateObjectMixin, DeleteObjectMixin
 from .models import Book, Category
@@ -9,7 +10,15 @@ from .forms import CategoryForm, BookForm
 def books_list(request):
     books = Book.objects.all()
     categories = Category.objects.all()
-    return render(request, 'catalogue/new_index.html', context={'books': books, 'categories': categories})
+    paginator = Paginator(books, 3)
+
+    page_number = request.GET.get('page', 1)
+    page = paginator.get_page(page_number)
+
+    return render(
+        request, 'catalogue/new_index.html',
+        context={'books': page, 'categories': categories}
+        )
 
 
 class BookDetails(DetailObjectMixin, View):

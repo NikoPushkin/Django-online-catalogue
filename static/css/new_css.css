@@ -109,6 +109,35 @@ body {
   color: white;
 }
 
+.paginator-wrapper {
+  display: grid;
+  justify-content: center;
+}
+
+.pagination {
+  display: inline-block;
+  margin-top: 150px;
+}
+
+
+.pagination a {
+  color: black;
+  display: inline-grid;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+  font-size: 22px;
+}
+
+.pagination a.active {
+  background-color: #FFBECF;
+  color: white;
+  border: 1px solid #FFBECF;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
 
 /* CATALOGUE CONTAINER CATALOGUE CONTAINER CATALOGUE CONTAINER  */
 
@@ -296,16 +325,6 @@ img {vertical-align: middle;}
       'main-photo';
     grid-row-gap: 50px;
   }
-
-    .overlay-image {
-      /* display: block; */
-      width: 80%;
-      /* min-width: 350px;
-      max-width: 350px;
-      min-height: 500px;
-      max-height: 500px; */
-    }
-
 }
 
 .description {
@@ -313,13 +332,6 @@ img {vertical-align: middle;}
   text-align: center;
 }
 
-
-/* .image {
-  min-width: 430px;
-  max-width: 430px;
-  min-height: 580px;
-  max-height: 580px;
-} */
 
 .overlay-image {
   display: block;

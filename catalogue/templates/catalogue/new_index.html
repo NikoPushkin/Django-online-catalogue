@@ -7,7 +7,7 @@
 {% block content %}
   <div class="catalogue-container">
 
-      {% for book in books %}
+      {% for book in books.object_list %}
 
           {% include 'catalogue/includes/book_card_template.html' %}
 

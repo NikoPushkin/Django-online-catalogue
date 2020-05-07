@@ -34,15 +34,34 @@
 
       <div class="content-container">
 
-        {% block content %}
-          There is no any content
-        {% endblock %}
+            {% block content %}
+              There is no any content
+            {% endblock %}
+
 
       </div>
 
-      <div class="footer">
+      {% if books or category.books.all %}
+      <div class="paginator-wrapper">
+        <div class="pagination">
+          <a href="#">&laquo;</a>
+
+          {% for i in books.paginator.page_range %}
+
+          {% if books.number == i %}
+          <a href="?page={{ i }}" class="active">{{ i }}</a>
+          {% else %}
+          <a href="?page={{ i }}">{{ i }}</a>
+          {% endif %}
+          {% endfor %}
+
+          <a href="#">&raquo;</a>
+        </div>
+      </div>
+      {% endif %}
+      <!-- <div class="footer">
         <h3>Some shit about your fucking project and other information</h3>
-      </div>
+      </div> -->
 
     </div>
 

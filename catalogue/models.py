@@ -21,6 +21,7 @@ class Book(models.Model):
     theme_photo = models.ImageField(blank=True, null=True)
     theme_info = models.TextField(blank=True, db_index=True)
     tags = models.ManyToManyField('Category', blank=True, related_name='books')
+    date_pub = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_url(self):
         return reverse('book_details_url', kwargs={'slug': self.slug})
@@ -36,6 +37,9 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['-date_pub']
+
 class Category(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True)
@@ -48,3 +52,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['title']
