@@ -9,9 +9,10 @@
 
 {% block content %}
 <div class="category_label">
-  <h1 style="text-align: center">"{{ category.title|title}}" category stores the following stuff:</h1>
+  <h1 style="text-align: center">"{{ category.title|title }}" category stores the following stuff:</h1>
 </div>
-<div class="books_by_cat">
+
+<div class="catalogue-container">
 
     {% for book in category.books.all %}
       {% include 'catalogue/includes/book_card_template.html' %}
