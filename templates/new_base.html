@@ -42,22 +42,21 @@
       </div>
 
       {% if books or category.books.all %}
-      <div class="paginator-wrapper">
-        <div class="pagination">
-          <a href="#">&laquo;</a>
+        <div class="paginator-wrapper">
+          <div class="pagination">
+            <a href="#">&laquo;</a>
 
-          {% for i in books.paginator.page_range %}
+            {% for i in books.paginator.page_range %}
+              {% if books.number == i %}
+                <a href="?page={{ i }}" class="active">{{ i }}</a>
+              {% else %}
+                <a href="?page={{ i }}">{{ i }}</a>
+              {% endif %}
+            {% endfor %}
 
-          {% if books.number == i %}
-          <a href="?page={{ i }}" class="active">{{ i }}</a>
-          {% else %}
-          <a href="?page={{ i }}">{{ i }}</a>
-          {% endif %}
-          {% endfor %}
-
-          <a href="#">&raquo;</a>
+            <a href="#">&raquo;</a>
+          </div>
         </div>
-      </div>
       {% endif %}
       <!-- <div class="footer">
         <h3>Some shit about your fucking project and other information</h3>

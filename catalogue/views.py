@@ -10,10 +10,10 @@ from .forms import CategoryForm, BookForm
 def books_list(request):
     books = Book.objects.all()
     categories = Category.objects.all()
-    paginator = Paginator(books, 3)
+    book_paginator = Paginator(books, 6)
 
     page_number = request.GET.get('page', 1)
-    page = paginator.get_page(page_number)
+    page = book_paginator.get_page(page_number)
 
     return render(
         request, 'catalogue/new_index.html',
@@ -52,8 +52,8 @@ class BookDelete(DeleteObjectMixin, View):
 def categories_list(request):
     categories = Category.objects.all()
     return render(
-    request, 'catalogue/categories_list.html',
-    context={"categories": categories}
+        request, 'catalogue/categories_list.html',
+        context={"categories": categories}
     )
 
 
