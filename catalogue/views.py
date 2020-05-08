@@ -2,15 +2,20 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 from django.core.paginator import Paginator
 
-from .utils import DetailObjectMixin, CreateObjectMixin, UpdateObjectMixin, DeleteObjectMixin
+from .utils import CreateObjectMixin, UpdateObjectMixin, DeleteObjectMixin
 from .models import Book, Category
 from .forms import CategoryForm, BookForm
 
 
-def books_list(request):
-    books = Book.objects.all()
+def books_list(request, slug=None):
     categories = Category.objects.all()
-    book_paginator = Paginator(books, 6)
+    books = Book.objects.all()
+
+    if slug:
+        category = Category.objects.get(slug__iexact=slug).books.all()
+        book_paginator = Paginator(category, 3)
+    else:
+        book_paginator = Paginator(books, 6)
 
     page_number = request.GET.get('page', 1)
     page = book_paginator.get_page(page_number)
@@ -21,14 +26,13 @@ def books_list(request):
         )
 
 
-class BookDetails(DetailObjectMixin, View):
-    model = Book
-    template = "catalogue/book_details.html"
-
-
-class BookCategory(DetailObjectMixin, View):
-    model = Category
-    template = "catalogue/book_category.html"
+def book_details(request, slug):
+    categories = Category.objects.all()
+    book = get_object_or_404(Book, slug__iexact=slug)
+    return render(
+        request, "catalogue/book_details.html",
+        context={'book': book, 'categories': categories}
+        )
 
 
 class BookCreater(CreateObjectMixin, View):
@@ -54,7 +58,7 @@ def categories_list(request):
     return render(
         request, 'catalogue/categories_list.html',
         context={"categories": categories}
-    )
+        )
 
 
 class CategoryUpdate(UpdateObjectMixin, View):
