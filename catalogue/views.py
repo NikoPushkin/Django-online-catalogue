@@ -22,9 +22,8 @@ def books_list(request, slug=None):
 
     return render(
         request, 'catalogue/new_index.html',
-        context={'books': page, 'categories': categories}
+        context={'books': page, 'categories': categories, 'slug': slug}
         )
-
 
 def book_details(request, slug):
     categories = Category.objects.all()
@@ -34,16 +33,17 @@ def book_details(request, slug):
         context={'book': book, 'categories': categories}
         )
 
+def home_page(request):
+    categories = Category.objects.all()
+    return render(request, 'catalogue/home_page.html', context={'categories': categories})
 
 class BookCreater(CreateObjectMixin, View):
     form = BookForm
     template = 'catalogue/book_create.html'
 
-
 class CategoryCreate(CreateObjectMixin, View):
     form = CategoryForm
     template = 'catalogue/category_create.html'
-
 
 class CategoryDelete(DeleteObjectMixin, View):
     model = Category
@@ -60,12 +60,10 @@ def categories_list(request):
         context={"categories": categories}
         )
 
-
 class CategoryUpdate(UpdateObjectMixin, View):
     model = Category
     form = CategoryForm
     template = 'catalogue/cat_update.html'
-
 
 class BookUpdate(UpdateObjectMixin, View):
     model = Book

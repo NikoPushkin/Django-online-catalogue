@@ -16,7 +16,7 @@
 
     <div class="base-grid-container">
       <div class="navbar-container">
-        <div class="Home-button"><a href="">Home</a></div>
+        <div class="Home-button"><a href="{% url 'home_page_url' %}">Home</a></div>
         <div class="Store-button">
           <button class="dropbtn-menu" onclick="window.location.href = '{% url "books_list_url" %}'">
             Store
