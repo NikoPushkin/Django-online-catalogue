@@ -17,6 +17,7 @@
     <div class="base-grid-container">
       <div class="navbar-container">
         <div class="Home-button"><a href="{% url 'home_page_url' %}">Home</a></div>
+
         <div class="Store-button">
           <button class="dropbtn-menu" onclick="window.location.href = '{% url "books_list_url" %}'">
             Store
@@ -27,8 +28,20 @@
             {% endfor %}
           </div>
         </div>
+
         <div class="Sl-button"><a href="">Shopping list</a></div>
-        <div class="Search-field"><a href="">Search</a></div>
+
+        <div class="search-field">
+          <form action="{% url 'books_list_url' %}">
+            <div class="input-container">
+              <input type="text" placeholder="Search.." name="search">
+            </div>
+            <div class="button-container">
+              <button class="search-button" type="submit"><img src="{% static '../media/search.png' %}" style="height: 25px; width: 23px"></button>
+            </div>
+          </form>
+        </div>
+
         <div class="Contact-button"><a href="">Contact</a></div>
       </div>
 

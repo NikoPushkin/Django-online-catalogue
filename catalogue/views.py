@@ -9,7 +9,13 @@ from .forms import CategoryForm, BookForm
 
 def books_list(request, slug=None):
     categories = Category.objects.all()
-    books = Book.objects.all()
+
+    search_query = request.GET.get('search', '')
+    if search_query:
+        books = Book.objects.filter(title__icontains=search_query)
+    else:
+        books = Book.objects.all()
+
 
     if slug:
         category = Category.objects.get(slug__iexact=slug).books.all()
