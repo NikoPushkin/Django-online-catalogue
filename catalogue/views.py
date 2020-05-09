@@ -28,7 +28,7 @@ def books_list(request, slug=None):
 
     return render(
         request, 'catalogue/new_index.html',
-        context={'books': page, 'categories': categories, 'slug': slug}
+        context={'books': page, 'categories': categories, 'slug': slug, 'search': search_query}
         )
 
 def book_details(request, slug):

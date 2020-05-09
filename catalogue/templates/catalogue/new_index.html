@@ -7,8 +7,10 @@
 {% block content %}
   {% if slug %}
     <h1 style="margin-top: 80px; text-align: center; color: #99C1B6">"{{ slug | title }}" category stores following items:</h1>
+  {% elif search %}
+    <h1 style="margin-top: 80px; text-align: center; color: #99C1B6">Results of "{{ search | title }}" search</h1>
   {% else %}
-    <h1 style="margin-top: 80px; text-align: center; color: #99C1B6">There is a general item list here</h1>
+    <h1 style="margin-top: 80px; text-align: center; color: #99C1B6">There is a general items list here</h1>
   {% endif %}
   <div class="catalogue-container">
 
