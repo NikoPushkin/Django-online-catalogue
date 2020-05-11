@@ -20,7 +20,7 @@
 
         <div class="Store-button">
           <button class="dropbtn-menu" onclick="window.location.href = '{% url "books_list_url" %}'">
-            Store
+            Catalogue
           </button>
           <div class="dropdown-menu">
             {% for cat in categories %}
@@ -29,7 +29,9 @@
           </div>
         </div>
 
-        <div class="Sl-button"><a href="">Shopping list</a></div>
+        <div class="Sl-button"><a href="">Shopping list is in dev</a></div>
+
+        <div class="Contact-button"><a href="">Contacts (later)</a></div>
 
         <div class="search-field">
           <form action="{% url 'books_list_url' %}">
@@ -41,8 +43,6 @@
             </div>
           </form>
         </div>
-
-        <div class="Contact-button"><a href="">Contact</a></div>
       </div>
 
       <div class="content-container">
@@ -57,7 +57,7 @@
       {% if books or category.books.all %}
         <div class="paginator-wrapper">
           <div class="pagination">
-            <a href="#">&laquo;</a>
+          <a href="?page={{ books.paginator.page_range|first }}">&laquo;</a>
 
             {% for i in books.paginator.page_range %}
               {% if books.number == i %}
@@ -67,7 +67,7 @@
               {% endif %}
             {% endfor %}
 
-            <a href="#">&raquo;</a>
+          <a href="?page={{ books.paginator.page_range|last }}">&raquo;</a>
           </div>
         </div>
       {% endif %}
