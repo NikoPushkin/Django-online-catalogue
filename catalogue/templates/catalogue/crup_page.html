@@ -6,9 +6,10 @@
 
 
 {% block content %}
-  <div style="margin-top: 80px" class="function-container">
+  <div class="function-container">
     <div><a href="{% url 'book_create_url' %}">Create book</a></div>
     <div><a href="{% url 'category_create_url' %}">Create category</a></div>
-    <div><a href="{% url 'cat_list_url' %}">Category settings</a></div>
+    <div><a href="{% url 'books_set_url' %}">Books settings</a></div>
+    <div><a href="{% url 'cat_set_url' %}">Category settings</a></div>
   </div>
 {% endblock %}
