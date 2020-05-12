@@ -16,7 +16,6 @@ def books_list(request, slug=None):
     else:
         books = Book.objects.all()
 
-
     if slug:
         category = Category.objects.get(slug__iexact=slug).books.all()
         book_paginator = Paginator(category, 3)
@@ -45,11 +44,11 @@ def home_page(request):
 
 class BookCreater(CreateObjectMixin, View):
     form = BookForm
-    template = 'catalogue/book_create.html'
+    template = 'catalogue/object_create.html'
 
 class CategoryCreate(CreateObjectMixin, View):
     form = CategoryForm
-    template = 'catalogue/category_create.html'
+    template = 'catalogue/object_create.html'
 
 class CategoryDelete(DeleteObjectMixin, View):
     model = Category
@@ -58,13 +57,6 @@ class CategoryDelete(DeleteObjectMixin, View):
 class BookDelete(DeleteObjectMixin, View):
     model = Book
     url = 'books_list_url'
-
-def categories_list(request):
-    categories = Category.objects.all()
-    return render(
-        request, 'catalogue/categories_list.html',
-        context={"categories": categories}
-        )
 
 class CategoryUpdate(UpdateObjectMixin, View):
     model = Category
@@ -78,3 +70,12 @@ class BookUpdate(UpdateObjectMixin, View):
 
 def creater_page(request):
     return render(request, 'catalogue/creater_page.html')
+
+def crup_page(request):
+    categories = Category.objects.all()
+    return render(request, 'catalogue/crup_page.html', context={'categories': categories})
+
+
+def categories_list(request):
+    categories = Category.objects.all()
+    return render(request, 'catalogue/categories_list.html', context={'categories': categories})

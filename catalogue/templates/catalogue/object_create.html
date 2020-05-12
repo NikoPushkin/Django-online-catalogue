@@ -1,0 +1,40 @@
+{% extends 'catalogue/base_catalogue.html' %}
+
+{% block title %}
+    Book-creat
+{% endblock %}
+
+
+{% block content %}
+    <div style="display: grid; justify-content: center" class="create-container">
+
+      {% if object_name == 'bookform' %}
+        <form action="{% url 'book_create_url' %}" method="post">
+      {% else %}
+        <form action="{% url 'category_create_url' %}" method="post">
+      {% endif %}
+
+        {% csrf_token %}
+
+          {% for field in form %}
+
+            {% if field.errors %}
+              <script>
+                alert('{{ field.errors }}')
+              </script>
+            {% endif %}
+
+                <div class="book-creater" style="display: grid; margin-top: 80px; justify-content: center; border: 2px solid black; padding: 5px; width: 100%">
+                  {{ field.label }}
+                  {{ field }}
+                </div>
+
+          {% endfor %}
+        <div class="book-creater" style="display: grid; margin-top: 80px; justify-content: center; border: 2px solid black; padding: 5px; width: 100%">
+          <button style="padding: 10px 100px; background-color: pink; border-style: none"type="submit">Create book</button>
+        </div>
+
+      </form>
+    </div>
+
+{% endblock %}
