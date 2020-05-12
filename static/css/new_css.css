@@ -524,3 +524,46 @@
     margin-top: 200px;
   }
 }
+
+/* CRUP PAGE CRUP PAGE CRUP PAGE CRUP PAGE CRUP PAGE CRUP PAGE CRUP PAGE CRUP PAGE */
+.function-container {
+  margin-top: 200px;
+  display: grid;
+  grid-template-columns: 300px 300px;
+  grid-template-rows: 50px 50px;
+  grid-row-gap: 50px;
+  grid-column-gap: 200px;
+  justify-content: center;
+}
+
+/* .function-container div {
+  border: 1px solid black;
+} */
+
+.function-container a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  background-color: #99C1B6;
+  height: 100%;
+  text-align: center;
+  padding-top: 11px;
+  font-family: Trebuchet MS sans-serif;
+  font-size: 22px;
+}
+
+.function-container a:hover {
+  background-color: #f2f6e9;
+  color: black;
+  transition: 0.4s ease;
+}
+
+@media only screen and (max-width: 500px) {
+  .function-container {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 250px;
+    grid-template-rows: auto auto auto auto;
+    grid-row-gap: 20px;
+  }
+}
