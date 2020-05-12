@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import View
 from django.core.paginator import Paginator
 
-from .utils import CreateObjectMixin, UpdateObjectMixin, DeleteObjectMixin
+from .utils import CreateObjectMixin, UpdateObjectMixin, DeleteObjectMixin, ObjectsListMixin
 from .models import Book, Category
 from .forms import CategoryForm, BookForm
 
@@ -44,38 +44,38 @@ def home_page(request):
 
 class BookCreater(CreateObjectMixin, View):
     form = BookForm
-    template = 'catalogue/object_create.html'
 
 class CategoryCreate(CreateObjectMixin, View):
     form = CategoryForm
-    template = 'catalogue/object_create.html'
 
 class CategoryDelete(DeleteObjectMixin, View):
     model = Category
-    url = 'categories_list_url'
+    url = 'cat_set_url'
 
 class BookDelete(DeleteObjectMixin, View):
     model = Book
-    url = 'books_list_url'
+    url = 'books_set_url'
 
 class CategoryUpdate(UpdateObjectMixin, View):
     model = Category
     form = CategoryForm
-    template = 'catalogue/cat_update.html'
 
 class BookUpdate(UpdateObjectMixin, View):
     model = Book
     form = BookForm
-    template = 'catalogue/book_update.html'
 
 def creater_page(request):
     return render(request, 'catalogue/creater_page.html')
 
 def crup_page(request):
     categories = Category.objects.all()
-    return render(request, 'catalogue/crup_page.html', context={'categories': categories})
+    return render(
+        request, 'catalogue/crup_page.html',
+        context={'categories': categories}
+        )
 
+class BookList(ObjectsListMixin, View):
+    model = Book
 
-def categories_list(request):
-    categories = Category.objects.all()
-    return render(request, 'catalogue/categories_list.html', context={'categories': categories})
+class CategoryList(ObjectsListMixin, View):
+    model = Category
