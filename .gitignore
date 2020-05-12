@@ -3,3 +3,5 @@ db.sqlite3
 covers
 __init__.py
 migrations
+/media
+db.sqlite3
