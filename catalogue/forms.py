@@ -2,6 +2,9 @@ from django.forms import ModelForm
 from .models import Category, Book
 from django.core.exceptions import ValidationError
 
+
+#forms for creation and change items
+
 class CategoryForm(ModelForm):
     class Meta:
         model = Category
@@ -10,6 +13,7 @@ class CategoryForm(ModelForm):
     def clean_slug(self):
         new_cat = self.cleaned_data['slug'].lower()
 
+        #some checks befor creation
         if new_cat == 'create':
             raise ValidationError('"create"-slug does not availible. Please, choose another title')
         if Category.objects.filter(slug__iexact=new_cat).count():
@@ -29,11 +33,12 @@ class BookForm(ModelForm):
     def clean_slug(self):
         new_cat = self.cleaned_data['slug'].lower()
 
+        #some checks befor creation
         if new_cat == 'create':
             raise ValidationError('"create"-slug does not availible. Please, choose another title')
         return new_cat
 
-        
+
 
 
 

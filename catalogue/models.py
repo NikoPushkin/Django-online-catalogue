@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from time import time
 
 
+#It generates slug for new items via slugify method
 def gen_slug(s):
     new_slug = slugify(s, allow_unicode=True)
     return new_slug + str(int(time()))
@@ -32,7 +33,7 @@ class Book(models.Model):
     def get_delete_url(self):
         return reverse('book_delete_url', kwargs={'slug': self.slug})
 
-
+    #Save method was change for automatic-generation of slug
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = gen_slug(self.title)
@@ -41,6 +42,7 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+    #items display order
     class Meta:
         ordering = ['date_pub']
 
@@ -60,5 +62,6 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    #items display order
     class Meta:
         ordering = ['title']
