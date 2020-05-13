@@ -79,7 +79,7 @@ class ObjectsListMixin:
         return render(
             request, ObjectsListMixin.template,
             context={
-                object_name: obj,
+                'objects_list': obj,
                 'object_name': object_name,
                 'categories': categories
                 }
