@@ -5,3 +5,4 @@ __init__.py
 migrations
 /media
 db.sqlite3
+secret.py
