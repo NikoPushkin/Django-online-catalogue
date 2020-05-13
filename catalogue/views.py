@@ -6,6 +6,8 @@ from .utils import CreateObjectMixin, UpdateObjectMixin, DeleteObjectMixin, Obje
 from .models import Book, Category
 from .forms import CategoryForm, BookForm
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 def books_list(request, slug=None):
     categories = Category.objects.all()
@@ -42,28 +44,39 @@ def home_page(request):
     categories = Category.objects.all()
     return render(request, 'catalogue/home_page.html', context={'categories': categories})
 
-class BookCreater(CreateObjectMixin, View):
+class BookCreater(LoginRequiredMixin, CreateObjectMixin, View):
     form = BookForm
+    login_url = '/admin/'
+    redirect_field_name = 'redirect_to'
 
-class CategoryCreate(CreateObjectMixin, View):
+class CategoryCreate(LoginRequiredMixin, CreateObjectMixin, View):
     form = CategoryForm
-
-class CategoryDelete(DeleteObjectMixin, View):
+    login_url = '/admin/'
+    redirect_field_name = 'redirect_to'
+class CategoryDelete(LoginRequiredMixin, DeleteObjectMixin, View):
     model = Category
     url = 'cat_set_url'
+    login_url = '/admin/'
+    redirect_field_name = 'redirect_to'
 
-class BookDelete(DeleteObjectMixin, View):
+class BookDelete(LoginRequiredMixin, DeleteObjectMixin, View):
     model = Book
     url = 'books_set_url'
+    login_url = '/admin/'
+    redirect_field_name = 'redirect_to'
 
-class CategoryUpdate(UpdateObjectMixin, View):
+class CategoryUpdate(LoginRequiredMixin, UpdateObjectMixin, View):
     model = Category
     form = CategoryForm
+    login_url = '/admin/'
+    redirect_field_name = 'redirect_to'
 
-class BookUpdate(UpdateObjectMixin, View):
+class BookUpdate(LoginRequiredMixin, UpdateObjectMixin, View):
     model = Book
     form = BookForm
-
+    login_url = '/admin/'
+    redirect_field_name = 'redirect_to'
+    
 def creater_page(request):
     return render(request, 'catalogue/creater_page.html')
 

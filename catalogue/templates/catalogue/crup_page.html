@@ -6,10 +6,12 @@
 
 
 {% block content %}
-  <div class="function-container">
-    <div><a href="{% url 'book_create_url' %}">Create book</a></div>
-    <div><a href="{% url 'category_create_url' %}">Create category</a></div>
-    <div><a href="{% url 'books_set_url' %}">Books settings</a></div>
-    <div><a href="{% url 'cat_set_url' %}">Category settings</a></div>
-  </div>
+
+    <div class="function-container">
+      <div><a href="{% url 'book_create_url' %}">Create book</a></div>
+      <div><a href="{% url 'category_create_url' %}">Create category</a></div>
+      <div><a href="{% url 'books_set_url' %}">Books settings</a></div>
+      <div><a href="{% url 'cat_set_url' %}">Category settings</a></div>
+    </div>
+    
 {% endblock %}
