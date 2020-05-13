@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 
 class CreateObjectMixin:
     form = None
+    #one template for both objects
     template = 'catalogue/object_create.html'
 
     def get(self, request):
@@ -19,8 +20,10 @@ class CreateObjectMixin:
         else:
             bound_form = self.form(request.POST, request.FILES)
 
+        #bound validation
         if bound_form.is_valid():
             new_obj = bound_form.save()
+            #redirect to the new object page
             return redirect(new_obj)
         return render(
             request, CreateObjectMixin.template,
@@ -74,6 +77,7 @@ class ObjectsListMixin:
     def get(self, request):
         obj = self.model.objects.all()
         object_name = self.model.__name__.lower()
+        #categories for dropdown menu on the navbar
         categories = Category.objects.all()
 
         return render(

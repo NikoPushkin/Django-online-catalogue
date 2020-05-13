@@ -12,12 +12,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 def books_list(request, slug=None):
     categories = Category.objects.all()
 
+    #Search request handler
     search_query = request.GET.get('search', '')
     if search_query:
         books = Book.objects.filter(title__icontains=search_query)
     else:
         books = Book.objects.all()
 
+    # Filter by existing categories (dropdown menu)
     if slug:
         category = Category.objects.get(slug__iexact=slug).books.all()
         book_paginator = Paginator(category, 3)
@@ -76,7 +78,7 @@ class BookUpdate(LoginRequiredMixin, UpdateObjectMixin, View):
     form = BookForm
     login_url = '/admin/'
     redirect_field_name = 'redirect_to'
-    
+
 def creater_page(request):
     return render(request, 'catalogue/creater_page.html')
 

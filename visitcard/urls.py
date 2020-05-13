@@ -22,6 +22,7 @@ from django.views.generic.base import RedirectView
 from .views import redirect_page
 
 urlpatterns = [
+    #redirect from base url path
     path('', redirect_page),
     path('admin/', admin.site.urls),
     path('catalogue/', include('catalogue.urls')),
