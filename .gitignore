@@ -3,6 +3,6 @@ db.sqlite3
 covers
 __init__.py
 migrations
-/media
+/media/
 db.sqlite3
 secret.py
