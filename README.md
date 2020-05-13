@@ -4,3 +4,5 @@
 only for superuser, pagination and search function.<h2>
 
 Some functions such as authentication, shopping cart and pay-ability will implemented in some time
+
+App is contained in the Catalogue folder*
