@@ -19,8 +19,10 @@ from django.conf.urls.static import static
 from visitcard import settings
 from django.views.generic.base import RedirectView
 
+from .views import redirect_page
 
 urlpatterns = [
+    path('', redirect_page),
     path('admin/', admin.site.urls),
     path('catalogue/', include('catalogue.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
