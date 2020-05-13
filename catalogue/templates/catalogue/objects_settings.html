@@ -1,0 +1,66 @@
+{% extends 'catalogue/base_catalogue.html' %}
+
+{% block title %}
+  Categories - {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+
+  {% if object_name == 'book' %}
+    <h1 style="margin-top: 80px;">Books:</h1>
+
+      {% for obj in book %}
+
+      <div style="display: grid; border: 2px solid black; padding: 20px; margin: 20px; width: 10%" class="object-container">
+        <div style="display: grid; justify-content: center;">
+          <h3><a style="text-decoration: none" href="{{ obj.get_absolute_url }}">{{ obj.title|title }}</a></h3>
+        </div>
+
+        <div style="display: grid; justify-content: center; margin: 5px; text-decoration: none; border: none">
+          <form action="{{ obj.get_delete_url }}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+
+        <div style="display: grid; justify-content: center; margin: 5px; text-decoration: none; border: none">
+          <form action="{{ obj.get_update_url }}" method="get">
+            {% csrf_token %}
+            <button type="submit">Update</button>
+          </form>
+        </div>
+      </div>
+
+      {% endfor %}
+
+  {% else %}
+    <h1 style="margin-top: 80px;">Categories:</h1>
+
+      {% for obj in category %}
+
+      <div style="display: grid; border: 2px solid black; padding: 20px; margin: 20px; width: 10%" class="object-container">
+        <div style="display: grid; justify-content: center;">
+          <h3><a style="text-decoration: none" href="{{ obj.get_absolute_url }}">{{ obj.title|title }}</a></h3>
+        </div>
+
+        <div style="display: grid; justify-content: center; margin: 5px; text-decoration: none; border: none">
+          <form action="{{ obj.get_delete_url }}" method="post">
+            {% csrf_token %}
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+
+        <div style="display: grid; justify-content: center; margin: 5px; text-decoration: none; border: none">
+          <form action="{{ obj.get_update_url }}" method="get">
+            {% csrf_token %}
+            <button type="submit">Update</button>
+          </form>
+        </div>
+      </div>
+
+      {% endfor %}
+
+  {% endif %}
+
+{% endblock %}
