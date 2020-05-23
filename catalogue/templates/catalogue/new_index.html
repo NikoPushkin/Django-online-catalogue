@@ -18,7 +18,49 @@
 
           {% include 'catalogue/includes/book_card_template.html' %}
 
+          <script>
+
+            var slideIndex = 1;
+            showSlides(slideIndex);
+
+
+            function plusSlides(n) {
+              showSlides(slideIndex += n);                                      // n = -1 or +1 --> slideIndex = 1 += -1 or +1
+            }
+
+            // function currentSlide(n) {
+            //   showSlides(slideIndex = n);                                       // n = [1: 3]
+            // }
+
+
+            function showSlides(n) {
+              var i;
+              var slides = document.getElementsByClassName("fade");
+              var dots = document.getElementsByClassName("dot");
+              if (n > slides.length) {slideIndex = 1}                           // slides.length = 18
+              if (n < 1) {slideIndex = slides.lengt}                            // dots.length = 18
+              for (i = 0; i < slides.length; i+=1) {
+                slides[i].style.display = "none";                               // all slides are invisible
+              }
+              for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");   //
+              }
+              for (i = 0; i < slides.length; i+=3) {
+                slides[i].style.display = "block";                              // all firsts slides are visible
+              }
+              dots[slideIndex-1].className += " active";
+              // alert (slideIndex-1)
+              slides[slideIndex-1].style.display = "block";                    //
+              slides[slideIndex-2].style.display = "none";
+              alert (slides[slideIndex-2])
+              slides[slideIndex-3].style.display = "none";
+            }
+
+          </script>
+
       {% endfor %}
 
   </div>
+
+
 {% endblock %}
